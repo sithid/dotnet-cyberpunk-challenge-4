@@ -14,15 +14,13 @@ namespace dotnet_cyberpunk_challenge_4.Models
         }
 
         public DbSet<ArasakaCluster> arasakaClusters { get; set; } = null!;
-        public DbSet<ArasakaDevice> arasakaDevices { get; set; } = null!;
+        // TODO: We're missing a DB set here...
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // ArasakaCluster and ArasakaDevice relationships (same as before)
+            // TODO: Hmm...something is missing
             modelBuilder.Entity<ArasakaDevice>()
-                .HasOne(d => d.cluster)
-                .WithMany(c => c.devices)
-                .HasForeignKey(d => d.clusterId)
                 .OnDelete(DeleteBehavior.Cascade);
 
 
@@ -32,8 +30,7 @@ namespace dotnet_cyberpunk_challenge_4.Models
                 .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<ArasakaDevice>()
-                .Property(d => d.id)
-                .ValueGeneratedOnAdd();
+                .Property(d => d.id);
         }
     }
 }

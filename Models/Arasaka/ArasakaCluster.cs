@@ -17,6 +17,6 @@ namespace dotnet_cyberpunk_challenge_4.Models.Arasaka
         public string environment { get; set; }
         public string kubernetesVersion { get; set; }
         public string region { get; set; }
-        public virtual ICollection<ArasakaDevice> devices { get; set; }
+        // TODO: We need a property to be a virtual ICollection to hold ArasakaDevice
     }
 }

@@ -14,11 +14,11 @@ namespace dotnet_cyberpunk_challenge_4.Models.Arasaka
         public string processorType {get;set;}
         public string region { get; set; }
         public string athenaAccessKey {get;set;}
-        // Foreign Key for Cluster
-        public int clusterId { get; set; }
-
-        // Navigation property for the Cluster
-        [JsonIgnore]  // Prevent circular reference during serialization
-        public virtual ArasakaCluster cluster { get; set; }
+        
+        // TODO: We need two properties:
+        // The first is a property to hold the Foreign Key for Cluster.
+        // Second is to have a navigation property for Cluster, i.e. we need to reference the
+        // actual cluster object
+        // TIP: Add a decorator on the navigation property for [JsonIgnore] to keep from doing a ciruclar reference
     }
 }

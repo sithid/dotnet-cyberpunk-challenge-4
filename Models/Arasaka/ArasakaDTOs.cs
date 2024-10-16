@@ -16,17 +16,11 @@ namespace dotnet_cyberpunk_challenge_4.Models.Arasaka
         public string environment { get; set; }
         public string kubernetesVersion { get; set; }
         public string region { get; set; }
-        public List<ArasakaDeviceDto>? devices { get; set; }
+        
+        // TODO: Add a List of ArasakaDeviceDto.
+        // TIP: To make sure things work properly with SQLite the List should also be nullable
     }
 
-    public class ArasakaDeviceDto
-    {
-        public string name { get; set; }
-        public string architecture { get; set; }
-        public string processorType { get; set; }
-        public string region { get; set; }
-        public string athenaAccessKey { get; set; }
-        public int clusterId {get;set;}
-    }
+    // TODO: Add the class for the new ArasakaDevice DTO. The ArasakaClusterDto should reference this class
 
 }

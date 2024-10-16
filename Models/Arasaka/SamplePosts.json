@@ -10,8 +10,7 @@
   "environment": "production",
   "kubernetesVersion": "1.22",
   "region": "us-west-1",
-  "devices": [
-  ]
+  "devices": []
 }
 
 // ALT ArasakaCluster
@@ -31,26 +30,7 @@
       "architecture": "x86_64",
       "processorType": "Intel Xeon",
       "region": "us-west-1",
-      "athenaAccessKey": "A1B2C3D4E5F6G7H8",
-      "processes": [
-        {
-          "memory": "4GB",
-          "family": "Family-1",
-          "openFiles": [
-            "/var/log/system.log",
-            "/etc/hosts",
-            "/home/user/.bashrc"
-          ]
-        },
-        {
-          "memory": "8GB",
-          "family": "Family-2",
-          "openFiles": [
-            "/usr/bin/python",
-            "/tmp/session.lock"
-          ]
-        }
-      ]
+      "athenaAccessKey": "A1B2C3D4E5F6G7H8"
     }
   ]
 }
@@ -73,36 +53,7 @@
       "architecture": "x86_64",
       "processorType": "Intel Xeon",
       "region": "us-west-1",
-      "athenaAccessKey": "A1B2C3D4E5F6G7H8",
-      "processes": []
-    }
-  ]
-}
-
-// FOR ArasakaDevice with a couple processes
-{
-  "name": "Device-3",
-  "architecture": "arm64",
-  "processorType": "ARM Cortex",
-  "region": "us-east-1",
-  "athenaAccessKey": "Z9Y8X7W6V5U4T3S2",
-  "clusterId": 1,
-  "processes": [
-    {
-      "memory": "2GB",
-      "family": "Family-3",
-      "openFiles": [
-        "/var/log/dmesg",
-        "/etc/network/interfaces"
-      ]
-    },
-    {
-      "memory": "1GB",
-      "family": "Family-3",
-      "openFiles": [
-        "/usr/sbin/apache2",
-        "/var/log/apache2/error.log"
-      ]
+      "athenaAccessKey": "A1B2C3D4E5F6G7H8"
     }
   ]
 }
