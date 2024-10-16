@@ -15,7 +15,6 @@ namespace dotnet_cyberpunk_challenge_4.Models
 
         public DbSet<ArasakaCluster> arasakaClusters { get; set; } = null!;
         public DbSet<ArasakaDevice> arasakaDevices { get; set; } = null!;
-        public DbSet<ArasakaDeviceProcess> arasakaProcesses { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,12 +25,6 @@ namespace dotnet_cyberpunk_challenge_4.Models
                 .HasForeignKey(d => d.clusterId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // ArasakaDeviceProcess and ArasakaDevice relationship
-            modelBuilder.Entity<ArasakaDeviceProcess>()
-                .HasOne(p => p.ArasakaDevice)
-                .WithMany(d => d.processes)
-                .HasForeignKey(p => p.deviceId)
-                .OnDelete(DeleteBehavior.Cascade);
 
             // Ensure IDs are auto-incrementing
             modelBuilder.Entity<ArasakaCluster>()
@@ -40,10 +33,6 @@ namespace dotnet_cyberpunk_challenge_4.Models
 
             modelBuilder.Entity<ArasakaDevice>()
                 .Property(d => d.id)
-                .ValueGeneratedOnAdd();
-
-            modelBuilder.Entity<ArasakaDeviceProcess>()
-                .Property(p => p.id)
                 .ValueGeneratedOnAdd();
         }
     }

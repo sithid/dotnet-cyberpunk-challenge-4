@@ -27,14 +27,6 @@ namespace dotnet_cyberpunk_challenge_4.Models.Arasaka
         public string region { get; set; }
         public string athenaAccessKey { get; set; }
         public int clusterId {get;set;}
-        public List<ArasakaDeviceProcessDto>? processes { get; set; }
-    }
-
-    public class ArasakaDeviceProcessDto
-    {
-        public string memory { get; set; }
-        public string family { get; set; }
-        public List<string> openFiles { get; set; }
     }
 
 }

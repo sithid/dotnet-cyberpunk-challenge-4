@@ -102,12 +102,6 @@ namespace dotnet_cyberpunk_challenge_4.Controllers
                 athenaAccessKey = arasakaDeviceDto.athenaAccessKey,
                 clusterId = cluster.id, // Associate the device with the cluster
                 cluster = cluster, // Assign the cluster entity
-                processes = arasakaDeviceDto.processes?.Select(p => new ArasakaDeviceProcess
-                {
-                    memory = p.memory,
-                    family = p.family,
-                    openFiles = p.openFiles
-                }).ToList()
             };
 
             // Add the new device to the context first
@@ -115,29 +109,6 @@ namespace dotnet_cyberpunk_challenge_4.Controllers
             
             // Save the device so that the deviceId is generated
             await _context.SaveChangesAsync();
-
-            // If the device has processes, assign the deviceId to each process and add them to the context
-            if (arasakaDevice.processes != null && arasakaDevice.processes.Any())
-            {
-                foreach (var process in arasakaDevice.processes)
-                {
-                    process.deviceId = arasakaDevice.id;
-                    _context.arasakaProcesses.Add(process);
-                }
-            }
-            else
-            {
-                // Automatically create a default process for the device if no processes were provided
-                var defaultProcess = new ArasakaDeviceProcess
-                {
-                    memory = "4GB",
-                    family = "DefaultFamily",
-                    openFiles = new List<string> { "/var/log/system.log" },
-                    deviceId = arasakaDevice.id
-                };
-
-                _context.arasakaProcesses.Add(defaultProcess);
-            }
 
             // Save the processes
             await _context.SaveChangesAsync();

@@ -101,12 +101,6 @@ namespace dotnet_cyberpunk_challenge_4.Controllers
                     processorType = d.processorType,
                     region = d.region,
                     athenaAccessKey = d.athenaAccessKey,
-                    processes = d.processes?.Select(p => new ArasakaDeviceProcess
-                    {
-                        memory = p.memory,
-                        family = p.family,
-                        openFiles = p.openFiles
-                    }).ToList()
                 }).ToList()
             };
 
@@ -114,7 +108,7 @@ namespace dotnet_cyberpunk_challenge_4.Controllers
             _context.arasakaClusters.Add(arasakaCluster);
             await _context.SaveChangesAsync();
 
-            // Check and save devices and processes
+            // Check and save devices
             if (arasakaCluster.devices != null && arasakaCluster.devices.Any())
             {
                 foreach (var device in arasakaCluster.devices)

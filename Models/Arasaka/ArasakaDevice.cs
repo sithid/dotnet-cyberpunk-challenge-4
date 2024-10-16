@@ -14,7 +14,6 @@ namespace dotnet_cyberpunk_challenge_4.Models.Arasaka
         public string processorType {get;set;}
         public string region { get; set; }
         public string athenaAccessKey {get;set;}
-        public virtual ICollection<ArasakaDeviceProcess> processes {get; set;}
         // Foreign Key for Cluster
         public int clusterId { get; set; }
 
