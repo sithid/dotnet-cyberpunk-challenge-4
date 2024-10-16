@@ -75,46 +75,46 @@ namespace dotnet_cyberpunk_challenge_4.Controllers
 
         // POST: api/ArasakaDevice
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<ArasakaDevice>> PostArasakaDevice([FromBody] ArasakaDeviceDto arasakaDeviceDto)
-        {
-            // FIXME: This has an issue with SQLite saying that an id is not unique.
-            // Not recommended for you guys to fix this!
-            if (arasakaDeviceDto == null)
-            {
-                return BadRequest("Device data is missing.");
-            }
+        // [HttpPost]
+        // public async Task<ActionResult<ArasakaDevice>> PostArasakaDevice([FromBody] ArasakaDeviceDto arasakaDeviceDto)
+        // {
+        //     // FIXME: This has an issue with SQLite saying that an id is not unique.
+        //     // Not recommended for you guys to fix this!
+        //     if (arasakaDeviceDto == null)
+        //     {
+        //         return BadRequest("Device data is missing.");
+        //     }
 
-            // Find the associated cluster using the clusterId
-            var cluster = await _context.arasakaClusters.FindAsync(arasakaDeviceDto.clusterId);
+        //     // Find the associated cluster using the clusterId
+        //     var cluster = await _context.arasakaClusters.FindAsync(arasakaDeviceDto.clusterId);
 
-            if (cluster == null)
-            {
-                return NotFound($"Cluster with ID {arasakaDeviceDto.clusterId} not found.");
-            }
+        //     if (cluster == null)
+        //     {
+        //         return NotFound($"Cluster with ID {arasakaDeviceDto.clusterId} not found.");
+        //     }
 
-            var arasakaDevice = new ArasakaDevice
-            {
-                name = arasakaDeviceDto.name,
-                architecture = arasakaDeviceDto.architecture,
-                processorType = arasakaDeviceDto.processorType,
-                region = arasakaDeviceDto.region,
-                athenaAccessKey = arasakaDeviceDto.athenaAccessKey,
-                clusterId = cluster.id, // Associate the device with the cluster
-                cluster = cluster, // Assign the cluster entity
-            };
+        //     var arasakaDevice = new ArasakaDevice
+        //     {
+        //         name = arasakaDeviceDto.name,
+        //         architecture = arasakaDeviceDto.architecture,
+        //         processorType = arasakaDeviceDto.processorType,
+        //         region = arasakaDeviceDto.region,
+        //         athenaAccessKey = arasakaDeviceDto.athenaAccessKey,
+        //         clusterId = cluster.id, // Associate the device with the cluster
+        //         cluster = cluster, // Assign the cluster entity
+        //     };
 
-            // Add the new device to the context first
-            _context.arasakaDevices.Add(arasakaDevice);
+        //     // Add the new device to the context first
+        //     _context.arasakaDevices.Add(arasakaDevice);
             
-            // Save the device so that the deviceId is generated
-            await _context.SaveChangesAsync();
+        //     // Save the device so that the deviceId is generated
+        //     await _context.SaveChangesAsync();
 
-            // Save the processes
-            await _context.SaveChangesAsync();
+        //     // Save the processes
+        //     await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetArasakaDevice", new { id = arasakaDevice.id }, arasakaDevice);
-        }
+        //     return CreatedAtAction("GetArasakaDevice", new { id = arasakaDevice.id }, arasakaDevice);
+        // }
 
 
         // DELETE: api/ArasakaDevice/5
