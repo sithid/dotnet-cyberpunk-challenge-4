@@ -6,9 +6,11 @@ For those above reasons we need you to do the following to make sure we can hook
     - Compare the models and make sure that each property of the database model also exists on the DTO. 
     - Make sure that our Database Models have properties so that EFCore knows our ArasakaDevice is associated with the cluster
     - The Cluster model probably needs something added...  
+
 2. Make sure that we are creating tables for each of our Arasaka Models when a `dotnet ef database update` happens.
     - Maybe check the DbContext?
     - NOTE: we don't actually want to update the database here  
+    
 3. Make sure that the `OnModelCreating()` is validating that each ArasakaDevice has one cluster and that cluster also has many devices and the Device has a foreign key of clusterId and when deleted will Cascade.
     - HINT: it's a 1-to-many relationship 
     - Make sure that the arasaka device has the `.ValueGeneratedOnAdd()` in the `OnModelCreating()`  
